@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 28px;
+  color: #002050;
+  line-height: 41px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 22px;
+  color: #002050;
+  line-height: 31px;
+  font-weight: 700;
+}
+
+.btn {
+  background: linear-gradient(103deg, #fc6668 0%, #e10489 100%);
+}
+.title:hover {
+  text-decoration: underline #aef3ff 3px;
+}
+.wrapper:hover {
+  transform: rotate(3deg);
+}
