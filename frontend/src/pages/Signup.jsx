@@ -9,9 +9,10 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfrimPassword] = useState("");
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
   const navigate = useNavigate();
+  console.log(signup);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,10 +21,6 @@ const Signup = () => {
     }
     if (email === "" && password === "" && userName === "")
       toast.error("All field requied");
-
-    if (loading) {
-      return;
-    }
     try {
       setError(false);
       setLoading(true);
@@ -71,11 +68,15 @@ const Signup = () => {
             onChange={(e) => setConfrimPassword(e.target.value)}
           />
           <div className="flex items-center justify-center mt-5">
-            <input
+            <button
               type="submit"
-              className={`text-white  py-2 px-4 rounded-md hover:bg-primary/90 transition-all duration-200 bg-primary `}
-              value="Sign up"
-            />
+              className={`text-white  py-2 px-4 rounded-md hover:bg-primary/90 transition-all duration-200  ${
+                loading ? "bg-primary/40" : "bg-primary"
+              }`}
+              disabled={loading}
+            >
+              Sign up
+            </button>
           </div>
           <p className="text-center mt-3">
             Already have account?{" "}
