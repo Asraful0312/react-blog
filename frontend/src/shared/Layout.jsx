@@ -13,11 +13,22 @@ export const Layout = ({ children }) => {
           <Hero />
         </div>
       )}
+
       <div className="flex flex-col lg:flex-row w-full gap-10 container">
-        <div className="w-full lg:w-[70%] ">{children}</div>
-        <div className="w-full lg:w-[30%] mb-10">
-          <SideBar />
+        <div
+          className={`w-full mb-10 ${
+            location.pathname !== "/signup" && location.pathname !== "/login"
+              ? "lg:w-[70%]"
+              : "lg:w-full"
+          }`}
+        >
+          {children}
         </div>
+        {location.pathname !== "/signup" && location.pathname !== "/login" && (
+          <div className="w-full lg:w-[30%] mb-10">
+            <SideBar />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -35,14 +35,6 @@ const Post = ({ data, loading }) => {
           </h1>
         </Link>
         <div className="flex items-center gap-2 mb-2 cursor-pointer">
-          <p className="font-medium text-black text-xs">
-            By{" "}
-            <Link to={`/?author=${author}`}>
-              <span className="font-normal text-ash hover:text-primary transition-colors duration-200">
-                {author}
-              </span>
-            </Link>
-          </p>
           <div className="flex items-center gap-1 cursor-pointer">
             <AuthorAndDate
               author={author}

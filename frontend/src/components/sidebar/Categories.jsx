@@ -1,6 +1,7 @@
 import Heading from "../../shared/Heading";
 import { Link } from "react-router-dom";
 import useBlogs from "../../hooks/useBlogs";
+import Loading from "../../shared/Loading";
 
 const Categories = () => {
   const { blogs, loading, error } = useBlogs();
@@ -30,11 +31,7 @@ const Categories = () => {
           There was an error !
         </h1>
       )}
-      {!error && loading && (
-        <h1 className="flex items-center justify-center h-[60vh] text-primary text-2xl text-center animate-pulse font-bold">
-          Loading...
-        </h1>
-      )}
+      {!error && loading && <Loading />}
       {[...uniqueCategory]?.map((c) => (
         <div
           key={c}

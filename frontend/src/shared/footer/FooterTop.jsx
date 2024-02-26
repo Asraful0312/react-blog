@@ -3,6 +3,7 @@ import SmallBtn from "../SmallBtn";
 import AuthorAndDate from "../AuthorAndDate";
 import useBlogs from "../../hooks/useBlogs";
 import { Link } from "react-router-dom";
+import Loading from "../../shared/Loading";
 
 const FooterTop = () => {
   const { blogs, loading, error } = useBlogs();
@@ -94,17 +95,14 @@ const FooterTop = () => {
                   There was an error !
                 </h1>
               )}
-              {!error && loading && (
-                <h1 className="flex items-center justify-center h-[60vh] text-primary text-2xl text-center animate-pulse font-bold">
-                  Loading...
-                </h1>
-              )}
+              {!error && loading && <Loading />}
               {randomBlogs?.map((data) => (
                 <SinglePost key={data?.id} data={data} />
               ))}
             </div>
             <div className=" p-2">
               <h3 className="mb-4 font-bold text-base">Featured Post</h3>
+              {!error && loading && <Loading />}
               {!loading &&
                 featuredBlog?.slice(0, 1).map((blog) => (
                   <div key={blog?.id}>
@@ -138,11 +136,7 @@ const FooterTop = () => {
                     There was an error !
                   </h1>
                 )}
-                {!error && loading && (
-                  <h1 className="flex items-center justify-center h-[60vh] text-primary text-2xl text-center animate-pulse font-bold">
-                    Loading...
-                  </h1>
-                )}
+                {!error && loading && <Loading />}
                 {blogs?.length > 3
                   ? blogs
                       .slice(0, 3)

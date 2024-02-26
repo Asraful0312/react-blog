@@ -7,7 +7,7 @@ import { CiLogin } from "react-icons/ci";
 import { VscSignIn } from "react-icons/vsc";
 import { IoMdLogOut } from "react-icons/io";
 import { useAuth } from "../../contexts/AuthContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [show, setShow] = useState(false);
@@ -15,6 +15,7 @@ const Header = () => {
   const { currentUser, logout } = useAuth();
   const location = useLocation();
   const [active, setActive] = useState("Home");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setActive(location.pathname === "/" ? "Home" : location.pathname.slice(1));
@@ -25,23 +26,37 @@ const Header = () => {
     setShowProfile(false);
   };
 
+  const handleShowProfile = () => {
+    setShowProfile(!showProfile);
+  };
+
+  // useEffect(() => {
+  //   console.log(showProfile);
+  //   showProfile ? navigate("/?modal=show") : navigate("/");
+  // }, [showProfile]);
+
+  // const showModal = new URLSearchParams(location.search);
+  // const showParams = showModal.get("modal");
+  // console.log(showParams);
+
+  // useEffect(() => {
+  //   setShowProfile(showParams && true);
+  // }, []);
+
   return (
     <header className="px-11 border-b py-6 w-full bg-white">
       <div className="flex items-center justify-between ">
-          <GiHamburgerMenu
-            onClick={() => setShow(!show)}
-            className="flex text-2xl md:hidden"
-          />
+        <GiHamburgerMenu
+          onClick={() => setShow(!show)}
+          className="flex text-2xl md:hidden"
+        />
         <Link to="/" className="flex items-center gap-5">
           <span className="text-primary py-2 px-3 bg-primary/10 font-medium text-sm rounded-3xl">
             Home
           </span>
         </Link>
         <div className="relative">
-          <FaUserCircle
-            className="text-2xl"
-            onClick={() => setShowProfile(!showProfile)}
-          />
+          <FaUserCircle className="text-2xl" onClick={handleShowProfile} />
           {showProfile && (
             <div className=" p-4 w-[200px] bg-secondry rounded right-0 absolute flex flex-col gap-2">
               {currentUser && (

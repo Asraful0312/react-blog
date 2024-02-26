@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 import useBlogs from "../hooks/useBlogs";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { auth } from "../firebase";
+import { useAuth } from "../contexts/AuthContext";
 
 const Header = () => {
   const [search, setSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { blogs } = useBlogs();
   const { pathname } = useLocation();
-  console.log(pathname);
+  const { logout } = useAuth();
+  const { currentUser } = auth;
+
   useEffect(() => {
     setSearch(false);
     setSearchValue("");
@@ -28,7 +32,25 @@ const Header = () => {
         <Link to="/">
           <img className="w-40" src="/images/logo.png" alt="" />
         </Link>
-        <FiSearch onClick={() => setSearch(true)} className="text-lg" />
+        <div className="flex items-center gap-3">
+          <FiSearch onClick={() => setSearch(true)} className="text-lg" />
+          {currentUser ? (
+            <Link
+              to="/login"
+              onClick={logout}
+              className="text-black hover:text-primary transition-all duration-200"
+            >
+              LogOut
+            </Link>
+          ) : (
+            <Link
+              to="/signup"
+              className="text-black hover:text-primary transition-all duration-200"
+            >
+              Signup
+            </Link>
+          )}
+        </div>
       </div>
 
       <div

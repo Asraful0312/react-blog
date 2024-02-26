@@ -1,6 +1,7 @@
 import Heading from "../../shared/Heading";
 import SinglePost from "../../shared/SinglePost";
 import useBlogs from "../../hooks/useBlogs";
+import Loading from "../../shared/Loading";
 
 const PopularPost = () => {
   const { blogs, loading, error } = useBlogs();
@@ -13,11 +14,7 @@ const PopularPost = () => {
           There was an error !
         </h1>
       )}
-      {!error && loading && (
-        <h1 className="flex items-center justify-center h-[60vh] text-primary text-2xl text-center animate-pulse font-bold">
-          Loading...
-        </h1>
-      )}
+      {!error && loading && <Loading />}
       {blogs?.length > 3
         ? blogs
             .slice(0, 3)
