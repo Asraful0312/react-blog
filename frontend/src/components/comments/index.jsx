@@ -118,6 +118,7 @@ const Comments = ({ blogId }) => {
           </button>
         )}
       </form>
+
       {comments?.map((data) => (
         <SingleComment key={data?.id} data={data} handleDelete={handleDelete} />
       ))}

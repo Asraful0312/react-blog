@@ -2,20 +2,19 @@ import { SlCalender } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import useBlogs from "../hooks/useBlogs";
 import AuthorAndDate from "../shared/AuthorAndDate";
+import Loading from "../shared/Loading";
 
 const Hero = () => {
   const { blogs, loading } = useBlogs();
   let featuredBlog = blogs?.filter((blog) => blog?.featured);
 
+  console.log(featuredBlog);
+
   return (
     <>
       {featuredBlog?.length > 0 && (
         <div className="w-full">
-          {loading && (
-            <h1 className="flex items-center justify-center h-[60vh] text-primary text-2xl text-center animate-pulse font-bold">
-              Loading...
-            </h1>
-          )}
+          {loading && <Loading />}
           <div
             className={`container shadow-xl flex flex-col md:flex-row items-center gap-5 transition-all duration-500 ${
               loading ? "opacity-0 invisible" : "opacity-100 visible"
@@ -53,13 +52,13 @@ const Hero = () => {
                       />
                     </div>
                   </div>
-                  <div className="bg-black absolute bottom-0 left-0 right-0 w-full h-40 -mt-40 blur-lg opacity-40"></div>
+                  <div className="bg-black absolute bottom-0 left-0 right-0 w-full h-20 -mt-40 blur-lg opacity-40"></div>
                 </div>
               ))}
 
             <div className="w-full lg:w-[40%] px-5 py-3">
               {!loading && featuredBlog?.length > 3
-                ? featuredBlog.slice(3).map((blog) => (
+                ? featuredBlog.slice(1, 4).map((blog) => (
                     <div key={blog?.id} className="pb-5">
                       <div>
                         <Link to={`/post/${blog?.id}`}>

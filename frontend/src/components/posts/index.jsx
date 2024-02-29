@@ -30,7 +30,7 @@ const Posts = () => {
   );
 
   return (
-    <div className="">
+    <div className="w-full">
       {loading && <Loading />}
       {blogs
         ?.filter((item) => (tag ? item?.tags?.includes(tag) && item : true))
