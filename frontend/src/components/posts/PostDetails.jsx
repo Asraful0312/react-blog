@@ -208,7 +208,7 @@ const PostDetails = () => {
           )}
           {blogs?.length > 3
             ? blogs
-                .slice(0, 3)
+                .slice(0, 2)
                 ?.filter((blog) => blog?.id !== id)
                 .map((data) => (
                   <PostCard key={data?.id} data={data} text="sm" />
